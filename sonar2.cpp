@@ -1,12 +1,14 @@
 /*
 
-	Turns on light when close to sonar (10 cm and closer)
+	Blinks led faster the closer you get to it
+	
 */
+
 #include <Ultrasonic.h>
 
 Ultrasonic ultrasonic(9,8); // (Trig PIN,Echo PIN)
 int led = 10; 
-int val = 0;
+int sum = 0; 
 
 void setup() {
   Serial.begin(9600); 
@@ -16,21 +18,10 @@ void setup() {
 void loop()
 {
   Serial.print(ultrasonic.Ranging(CM)); // CM or INC
-  val = ultrasonic.Ranging(CM);
   Serial.println(" cm" );
-  if (val <= 10)
-  {
-  	turnOn();
-  }
-  else{
-  	turnOff();
-  }
-}
-
-void turnOn(){
-	digitalWrite(led, HIGH);
-}
-
-void turnOff(){
-	digitalWrite(led, LOW);
+  sum = ultrasonic.Ranging(CM) * 5;
+  digitalWrite(led, HIGH);
+  delay(sum);
+  digitalWrite(led, LOW);
+  delay(sum);
 }

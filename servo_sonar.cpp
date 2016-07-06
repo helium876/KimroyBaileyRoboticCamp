@@ -4,6 +4,7 @@
 Ultrasonic ultrasonic(9,8); // (Trig PIN,Echo PIN)
 Servo myservo;
 int val = 0;
+int dis = 10;
 
 void setup() {
   Serial.begin(9600); 
@@ -16,7 +17,7 @@ void loop()
   val = ultrasonic.Ranging(CM);
   Serial.println(" cm" );
   delay(100);
-  if(val < 10){
+  if(val < dis){
     myservo.write(0);
   }
   else{

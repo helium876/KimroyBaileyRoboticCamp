@@ -1,14 +1,9 @@
-/*
-
-	Blinks led faster the closer you get to it
-	
-*/
-
 #include <Ultrasonic.h>
+#include <Servo.h> 
 
 Ultrasonic ultrasonic(9,8); // (Trig PIN,Echo PIN)
-int led = 10; 
-int sum = 0; 
+Servo RightServo;
+Servo LeftServo;
 
 void setup() {
   Serial.begin(9600); 
